@@ -1,4 +1,4 @@
-# ## Mapeamento Objeto-Relacional em uma API Restful com Spring Boot
+## Mapeamento Objeto-Relacional em uma API Restful com Spring Boot
 
 Este repositório contém um projeto que demonstra o mapeamento objeto-relacional de uma relação "one-to-many" em uma API Restful desenvolvida com o Spring Boot.
 
