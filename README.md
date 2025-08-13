@@ -1,4 +1,4 @@
-# API Faculdade - Spring Boot (Exemplo Sênior)
+# API Faculdade - Spring Boot 
 
 > Projeto robusto de API Restful com Spring Boot, demonstrando práticas avançadas de arquitetura, versionamento, documentação, testes, logging, profiles e mapeamento ORM.
 
