@@ -1,19 +1,117 @@
-## Mapeamento Objeto-Relacional em uma API Restful com Spring Boot
+# API Faculdade - Spring Boot (Exemplo Sênior)
 
-Este repositório contém um projeto que demonstra o mapeamento objeto-relacional de uma relação "one-to-many" em uma API Restful desenvolvida com o Spring Boot.
+> Projeto robusto de API Restful com Spring Boot, demonstrando práticas avançadas de arquitetura, versionamento, documentação, testes, logging, profiles e mapeamento ORM.
 
-### Atividade Prática
+---
 
-Desenvolver uma API Restful com Spring Boot requer a modelagem adequada das entidades que compõem o domínio de negócios. Isso envolve a criação de classes Java que representam as entidades do sistema, definindo seus atributos e relacionamentos. Além disso, é necessário utilizar as anotações fornecidas pelo Spring Framework para que essas classes reflitam a estrutura do banco de dados que a API acessará.
+## Visão Geral
 
-Neste projeto, você encontrará as entidades cuidadosamente criadas para representar as tabelas, colunas e relacionamentos específicos do domínio. O mapeamento objeto-relacional é essencial para garantir a integridade dos dados e o correto funcionamento da API, tornando a interação com o banco de dados suave e eficiente.
+Esta API simula o domínio de uma faculdade, permitindo o cadastro e consulta de cursos e alunos, com relacionamento one-to-many (um curso possui vários alunos). O projeto foi desenvolvido com foco em boas práticas de backend Java.
 
-Principais tópicos abordados neste repositório:
-- Mapeamento objeto-relacional no Spring Boot.
-- Criação de entidades Java com atributos e relacionamentos.
-- Utilização de anotações Spring para configurar o acesso ao banco de dados.
+## Principais Funcionalidades
+- Cadastro, consulta e listagem paginada de cursos e alunos
+- Relacionamento one-to-many (Curso → Alunos)
+- Versionamento de API (`/api/v1`)
+- DTOs para exposição de dados
+- Camada de serviço separada
+- Tratamento global de exceções com respostas padronizadas
+- Logging estruturado (SLF4J)
+- Profiles para ambientes (dev/prod)
+- Documentação automática com Swagger/OpenAPI
+- Testes automatizados (JUnit + MockMvc)
 
-Este projeto serve como um guia prático para desenvolvedores que desejam aprender a mapear suas entidades de maneira eficiente e eficaz em uma API Restful. Sinta-se à vontade para explorar o código-fonte e os exemplos fornecidos aqui para aprimorar suas habilidades de desenvolvimento com Spring Boot.
+## Arquitetura
+- **Camadas:** Controller, Service, Repository, DTO, Exception, Config
+- **ORM:** Spring Data JPA (H2 em memória)
+- **Documentação:** Swagger (springdoc-openapi)
+- **Logging:** SLF4J/Logback
+- **Validação:** Bean Validation (Jakarta)
 
-**Observação:** Este repositório contém apenas o mapeamento das entidades e não uma implementação completa de uma API Restful. O foco está no aspecto de modelagem e mapeamento objeto-relacional.
+## Como Executar
+
+1. **Pré-requisitos:**
+   - Java 17+
+   - Maven 3.8+
+
+2. **Build e Testes:**
+   ```sh
+   mvn clean install
+   ```
+
+3. **Executar a aplicação:**
+   ```sh
+   mvn spring-boot:run
+   ```
+
+4. **Acessar a documentação Swagger:**
+   - [http://localhost:8080/swagger-ui.html](http://localhost:8080/swagger-ui.html)
+
+## Exemplos de Endpoints
+
+- Listar cursos (paginado):
+  ```http
+  GET /api/v1/cursos?page=0&size=10&sort=nome,asc
+  ```
+- Criar curso:
+  ```http
+  POST /api/v1/cursos
+  Content-Type: application/json
+  {
+    "nome": "Direito"
+  }
+  ```
+- Listar alunos (paginado):
+  ```http
+  GET /api/v1/alunos?page=0&size=10&sort=nome,asc
+  ```
+- Criar aluno:
+  ```http
+  POST /api/v1/alunos?cursoId=1
+  Content-Type: application/json
+  {
+    "nome": "Maria"
+  }
+  ```
+
+## Práticas de Implementadas
+- Versionamento de API (`/api/v1`)
+- DTOs e camada de serviço
+- Tratamento global de exceções customizadas
+- Logging estruturado em controllers e services
+- Profiles (application-dev/prod.properties)
+- Documentação Swagger/OpenAPI
+- Testes automatizados de controller
+- Paginação e ordenação nativas do Spring Data
+- Lombok para redução de boilerplate
+
+## Testes Automatizados
+
+Execute:
+```sh
+mvn test
+```
+
+- Testes de integração com MockMvc simulando chamadas HTTP reais
+- Validação de status, payload e regras de negócio
+
+## Logging e Observabilidade
+- Todas as operações relevantes são logadas com contexto (criação, erro, busca, etc)
+- Configuração padrão do Logback, customizável por profile
+
+## Perfis de Ambiente
+- `dev`: Banco H2 em memória, logs detalhados
+- `prod`: Pronto para produção, configurações seguras
+
+## Documentação Interativa
+- Swagger UI disponível em `/swagger-ui.html` para explorar e testar a API
+
+## Contribuição
+Pull requests são bem-vindos! Siga as práticas de clean code e mantenha a cobertura de testes.
+
+## Autor
+- Projeto desenvolvido por Thamires Candida Barbosa para fins didáticos e demonstração de práticas sênior em Spring Boot.
+
+---
+
+> Dúvidas ou sugestões? Abra uma issue!
 
